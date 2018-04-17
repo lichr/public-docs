@@ -1,5 +1,5 @@
 Setup Development Environment: VirtualBox + Fedora + I3
-
+=======================================================
 Summary
 -------
 - create virtual box VM
@@ -49,7 +49,17 @@ Install fedora
     reboot
     ~~~
 
+### Enable file sharing between host and guest (optional)
 
+[reference](https://forums.virtualbox.org/viewtopic.php?t=15868)
+
+- In vm's shared folder setting, add new shared folder
+- In guest system
+    ~~~
+    sudo mount -t vboxsf -o rw,uid=1000,gid=1000 share ~/host
+    ~~~
+
+    > If you want to have it mount automatically upon each boot, put the mount command in /etc/rc.local (Debian based distro's), or whatever script is run at the end of the boot process. The Shared Folders service should mount them automatically, but that doesn't always happen.
 
 Install i3
 ----------
@@ -85,8 +95,12 @@ install vscode
     dnf check-update
     sudo dnf install code
     ~~~
+- update (optional)
+    ~~~sh
+    sudo dnf update code
+    ~~~
 
-### watch file limitation
+### Increase watch file limitation
 
 [reference](https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc)
 
